@@ -15,7 +15,9 @@ interface DashboardPageProps {
  * 헤더, 사이드바, 메인 콘텐츠로 구성됨
  */
 function DashboardPage({ pageTitle = '대시보드' }: DashboardPageProps) {
-  const { loading, error } = useDashboardData();
+  // 빈 객체 대신 메모이제이션된 객체 사용
+  const filters = React.useMemo(() => ({}), []);
+  const { loading, error } = useDashboardData(filters);
 
   return (
     <DashboardProvider>
@@ -23,11 +25,13 @@ function DashboardPage({ pageTitle = '대시보드' }: DashboardPageProps) {
         <Header searchPlaceholder="Search resources..." />
         <MainContent>
           <Sidebar />
-          <DashboardContent 
-            title={pageTitle}
-            isLoading={loading}
-            hasError={!!error}
-          />
+          <DashboardContentWrapper>
+            <DashboardContent 
+              title={pageTitle}
+              isLoading={loading}
+              hasError={!!error}
+            />
+          </DashboardContentWrapper>
         </MainContent>
       </DashboardContainer>
     </DashboardProvider>
@@ -47,6 +51,11 @@ const MainContent = styled.div`
   display: flex;
   width: 100%;
   flex: 1;
+`;
+
+const DashboardContentWrapper = styled.div`
+  flex: 1;
+  padding-right: 24px;
 `;
 
 export default DashboardPage; 

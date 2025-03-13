@@ -118,7 +118,7 @@ function useDashboardData(
       totalCount: data.totalCount,
       equipments: filtered,
     });
-  }, [data, filters]);
+  }, [data, filters.status, filters.searchTerm, filters.dateRange?.[0], filters.dateRange?.[1]]);
 
   return {
     data: filteredData || data,

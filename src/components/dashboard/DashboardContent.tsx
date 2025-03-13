@@ -34,12 +34,20 @@ function DashboardContent({ title = 'T/S PORT', isLoading = false, hasError = fa
             <SearchInputWrapper>
               <SearchInput placeholder="Search" />
               <SearchButton>
-                <SearchIcon src="https://c.animaapp.com/tZAM44r5/img/magnifying-glass-1.svg" alt="Search" />
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#495057" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M21 21L16.65 16.65" stroke="#495057" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </SearchButton>
             </SearchInputWrapper>
             <EtaLabel>ETA</EtaLabel>
             <DatePicker>
-              <CalendarIcon src="https://c.animaapp.com/tZAM44r5/img/calendar.svg" alt="Calendar" />
+              <CalendarIcon>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="4" width="18" height="18" rx="2" stroke="#495057" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M16 2v4M8 2v4M3 10h18" stroke="#495057" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </CalendarIcon>
               <DateText>2024. 12. 12 ~ 2024. 12. 12</DateText>
             </DatePicker>
           </SearchSection>
@@ -75,9 +83,11 @@ function DashboardContent({ title = 'T/S PORT', isLoading = false, hasError = fa
         ) : hasError ? (
           <ErrorMessage>데이터를 불러오는 중 오류가 발생했습니다.</ErrorMessage>
         ) : (
-          <TableContainer>
-            <TableView />
-          </TableContainer>
+          <TableWrapper>
+            <TableContainer>
+              <TableView />
+            </TableContainer>
+          </TableWrapper>
         )}
       </MainContent>
     </ContentContainer>
@@ -188,11 +198,6 @@ const SearchButton = styled.button`
   right: 0;
 `;
 
-const SearchIcon = styled.img`
-  width: 16px;
-  height: 16px;
-`;
-
 const EtaLabel = styled.div`
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
@@ -212,9 +217,11 @@ const DatePicker = styled.div`
   cursor: pointer;
 `;
 
-const CalendarIcon = styled.img`
-  width: 16px;
-  height: 16px;
+const CalendarIcon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
 `;
 
 const DateText = styled.div`
@@ -286,11 +293,19 @@ const TotalLabel = styled.div`
   color: #000000;
 `;
 
+const TableWrapper = styled.div`
+  width: 100%;
+  overflow-x: auto;
+`;
+
 const TableContainer = styled.div`
+  width: 1784px;
   margin-top: 16px;
   background-color: #ffffff;
   border-radius: 4px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 `;
 
 const LoadingIndicator = styled.div`

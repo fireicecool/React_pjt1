@@ -12,22 +12,57 @@ function TableView() {
   // 테이블 헤더 정의
   const headers = [
     { id: 'select', label: '', width: '40px' },
-    { id: 'id', label: 'ID', width: '10%' },
-    { id: 'type', label: 'Type', width: '10%' },
-    { id: 'status', label: 'Status', width: '15%' },
-    { id: 'destination', label: 'Destination', width: '15%' },
-    { id: 'container', label: 'Container', width: '15%' },
-    { id: 'departure', label: 'Departure Date', width: '15%' },
-    { id: 'arrival', label: 'Arrival Date', width: '15%' },
+    { id: 'status', label: 'Status', width: '80px' },
+    { id: 'containerNumber', label: 'Container Number', width: '150px' },
+    { id: 'vol', label: 'VOL', width: '100px' },
+    { id: 'pod', label: 'POD', width: '80px' },
+    { id: 'tod', label: 'TOD', width: '80px' },
+    { id: 'vod', label: 'VOD', width: '80px' },
+    { id: 'sizeType', label: 'Size Type', width: '100px' },
+    { id: 'wgt', label: 'WGT(t)', width: '80px' },
+    { id: 'fullEmpty', label: 'Full/Empty', width: '100px' },
+    { id: 'cargoType', label: 'Cargo Type', width: '100px' },
+    { id: 'ogType', label: 'OG Type', width: '80px' },
+    { id: 'ogh', label: 'OGH', width: '60px' },
+    { id: 'ogf', label: 'OGF', width: '60px' },
+    { id: 'oga', label: 'OGA', width: '60px' },
+    { id: 'ogp', label: 'OGP', width: '60px' },
+    { id: 'ogs', label: 'OGS', width: '60px' },
+    { id: 'prevPod', label: 'Previous POD', width: '120px' },
+    { id: 'prevTod', label: 'Previous TOD', width: '120px' },
+    { id: 'prevVod', label: 'Previous VOD', width: '120px' },
+    { id: 'prevSlotPos', label: 'Previous Slot Position', width: '160px' },
+    { id: 'handlingInst', label: 'Handling Instruction', width: '160px' },
+    { id: 'bookingNo', label: 'Booking No.', width: '120px' },
   ];
 
-  // 샘플 데이터
+  // 샘플 데이터 - 원본 HTML 구조에 맞게 조정
   const rows = [
-    { id: 'EQ-0001', type: 'Container', status: 'Available', destination: 'Busan', container: '20ft', departureDate: '2024-04-10', arrivalDate: '2024-04-15' },
-    { id: 'EQ-0002', type: 'Vessel', status: 'In Transit', destination: 'Seoul', container: '40ft', departureDate: '2024-04-12', arrivalDate: '2024-04-18' },
-    { id: 'EQ-0003', type: 'Truck', status: 'Maintenance', destination: 'Incheon', container: '45ft', departureDate: '2024-04-14', arrivalDate: '2024-04-20' },
-    { id: 'EQ-0004', type: 'Container', status: 'Reserved', destination: 'Daegu', container: 'Special', departureDate: '2024-04-16', arrivalDate: '2024-04-22' },
-    { id: 'EQ-0005', type: 'Vessel', status: 'Available', destination: 'Jeju', container: '20ft', departureDate: '2024-04-18', arrivalDate: '2024-04-24' },
+    {
+      id: 'AMFU1421688',
+      status: 'Assign',
+      containerNumber: 'AMFU1421688',
+      vol: 'OLBFBS1MA',
+      pod: 'USORF',
+      tod: 'MAT',
+      vod: 'OLBFCE1MA',
+      sizeType: '22P0',
+      wgt: '20.13',
+      fullEmpty: 'F',
+      cargoType: 'GP',
+      ogType: '-',
+      ogh: '0',
+      ogf: '0',
+      oga: '0',
+      ogp: '0',
+      ogs: '0',
+      prevPod: '-',
+      prevTod: '-',
+      prevVod: '-',
+      prevSlotPos: '-',
+      handlingInst: '-',
+      bookingNo: '-',
+    }
   ];
 
   // 체크박스 변경 핸들러
@@ -56,277 +91,197 @@ function TableView() {
 
   return (
     <TableContainer>
-      <InnerBox>
-        {/* 테이블 헤더 */}
-        <TableRow $isHeader>
-          {headers.map(header => (
-            <TableColumn key={header.id} $width={header.width}>
-              {header.id === 'select' ? (
-                <CheckboxWrapper>
-                  <Checkbox 
-                    type="checkbox" 
-                    checked={selectedItems.length === rows.length} 
-                    onChange={handleSelectAll} 
-                  />
-                </CheckboxWrapper>
-              ) : (
-                <CellWrapper>
-                  <CellContent>
-                    <CellInnerBox>
-                      <CellLeft>
-                        <CellText>{header.label}</CellText>
-                      </CellLeft>
-                      {/* 정렬 아이콘 등 추가 가능 */}
-                    </CellInnerBox>
-                  </CellContent>
-                </CellWrapper>
-              )}
-            </TableColumn>
+      <TableHeader>
+        <HeaderRow>
+          <HeaderCell style={{ width: '40px' }}>
+            <Checkbox 
+              type="checkbox" 
+              checked={selectedItems.length === rows.length} 
+              onChange={handleSelectAll}
+            />
+          </HeaderCell>
+          {headers.slice(1).map((header) => (
+            <HeaderCell key={header.id} style={{ width: header.width }}>
+              <HeaderText>{header.label}</HeaderText>
+              <SortIcon>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 10l5 5 5-5H7z" fill="#6c757d"/>
+                </svg>
+              </SortIcon>
+            </HeaderCell>
           ))}
-        </TableRow>
-
-        {/* 테이블 데이터 행 */}
+        </HeaderRow>
+      </TableHeader>
+      <TableBody>
         {rows.map(row => (
           <TableRow key={row.id}>
-            <TableColumn $width="40px">
-              <CheckboxWrapper>
-                <Checkbox 
-                  type="checkbox" 
-                  checked={selectedItems.includes(row.id)} 
-                  onChange={() => handleCheckboxChange(row.id)} 
-                />
-              </CheckboxWrapper>
-            </TableColumn>
-            
-            <TableColumn $width="10%">
-              <CellWrapper>
-                <CellContent>
-                  <CellInnerBox>
-                    <CellLeft>
-                      <CellText>{row.id}</CellText>
-                    </CellLeft>
-                  </CellInnerBox>
-                </CellContent>
-              </CellWrapper>
-            </TableColumn>
-            
-            <TableColumn $width="10%">
-              <CellWrapper>
-                <CellContent>
-                  <CellInnerBox>
-                    <CellLeft>
-                      <CellText>{row.type}</CellText>
-                    </CellLeft>
-                  </CellInnerBox>
-                </CellContent>
-              </CellWrapper>
-            </TableColumn>
-            
-            <TableColumn $width="15%">
-              <CellWrapper>
-                <CellContent>
-                  <CellInnerBox>
-                    <CellLeft>
-                      <StatusBadge $status={row.status}>{row.status}</StatusBadge>
-                    </CellLeft>
-                  </CellInnerBox>
-                </CellContent>
-              </CellWrapper>
-            </TableColumn>
-            
-            <TableColumn $width="15%">
-              <CellWrapper>
-                <CellContent>
-                  <CellInnerBox>
-                    <CellLeft>
-                      <CellText>{row.destination}</CellText>
-                    </CellLeft>
-                  </CellInnerBox>
-                </CellContent>
-              </CellWrapper>
-            </TableColumn>
-            
-            <TableColumn $width="15%">
-              <CellWrapper>
-                <CellContent>
-                  <CellInnerBox>
-                    <CellLeft>
-                      <CellText>{row.container}</CellText>
-                    </CellLeft>
-                  </CellInnerBox>
-                </CellContent>
-              </CellWrapper>
-            </TableColumn>
-            
-            <TableColumn $width="15%">
-              <CellWrapper>
-                <CellContent>
-                  <CellInnerBox>
-                    <CellLeft>
-                      <CellText>{row.departureDate}</CellText>
-                    </CellLeft>
-                  </CellInnerBox>
-                </CellContent>
-              </CellWrapper>
-            </TableColumn>
-            
-            <TableColumn $width="15%">
-              <CellWrapper>
-                <CellContent>
-                  <CellInnerBox>
-                    <CellLeft>
-                      <CellText>{row.arrivalDate}</CellText>
-                    </CellLeft>
-                    <CellRight>
-                      <ActionButton>
-                        <ActionIcon src="https://c.animaapp.com/tZAM44r5/img/frame-2608566.svg" alt="Action" />
-                      </ActionButton>
-                    </CellRight>
-                  </CellInnerBox>
-                </CellContent>
-              </CellWrapper>
-            </TableColumn>
+            <TableCell style={{ width: '40px' }}>
+              <Checkbox 
+                type="checkbox" 
+                checked={selectedItems.includes(row.id)} 
+                onChange={() => handleCheckboxChange(row.id)} 
+              />
+            </TableCell>
+            <TableCell style={{ width: '80px' }}>
+              <CellText>{row.status}</CellText>
+            </TableCell>
+            <TableCell style={{ width: '150px' }}>
+              <CellText>{row.containerNumber}</CellText>
+            </TableCell>
+            <TableCell style={{ width: '100px' }}>
+              <CellText>{row.vol}</CellText>
+            </TableCell>
+            <TableCell style={{ width: '80px' }}>
+              <CellText>{row.pod}</CellText>
+            </TableCell>
+            <TableCell style={{ width: '80px' }}>
+              <CellText>{row.tod}</CellText>
+            </TableCell>
+            <TableCell style={{ width: '80px' }}>
+              <CellText>{row.vod}</CellText>
+            </TableCell>
+            <TableCell style={{ width: '100px' }}>
+              <CellText>{row.sizeType}</CellText>
+            </TableCell>
+            <TableCell style={{ width: '80px' }}>
+              <CellText>{row.wgt}</CellText>
+            </TableCell>
+            <TableCell style={{ width: '100px' }}>
+              <CellText>{row.fullEmpty}</CellText>
+            </TableCell>
+            <TableCell style={{ width: '100px' }}>
+              <CellText>{row.cargoType}</CellText>
+            </TableCell>
+            <TableCell style={{ width: '80px' }}>
+              <CellText>{row.ogType}</CellText>
+            </TableCell>
+            <TableCell style={{ width: '60px' }}>
+              <CellText>{row.ogh}</CellText>
+            </TableCell>
+            <TableCell style={{ width: '60px' }}>
+              <CellText>{row.ogf}</CellText>
+            </TableCell>
+            <TableCell style={{ width: '60px' }}>
+              <CellText>{row.oga}</CellText>
+            </TableCell>
+            <TableCell style={{ width: '60px' }}>
+              <CellText>{row.ogp}</CellText>
+            </TableCell>
+            <TableCell style={{ width: '60px' }}>
+              <CellText>{row.ogs}</CellText>
+            </TableCell>
+            <TableCell style={{ width: '120px' }}>
+              <CellText>{row.prevPod}</CellText>
+            </TableCell>
+            <TableCell style={{ width: '120px' }}>
+              <CellText>{row.prevTod}</CellText>
+            </TableCell>
+            <TableCell style={{ width: '120px' }}>
+              <CellText>{row.prevVod}</CellText>
+            </TableCell>
+            <TableCell style={{ width: '160px' }}>
+              <CellText>{row.prevSlotPos}</CellText>
+            </TableCell>
+            <TableCell style={{ width: '160px' }}>
+              <CellText>{row.handlingInst}</CellText>
+            </TableCell>
+            <TableCell style={{ width: '120px' }}>
+              <CellText>{row.bookingNo}</CellText>
+            </TableCell>
           </TableRow>
         ))}
-      </InnerBox>
+      </TableBody>
     </TableContainer>
   );
 }
 
+// 스타일 컴포넌트들
 const TableContainer = styled.div`
   width: 100%;
-  overflow: auto;
-  border: 1px solid #ececec;
+  overflow-x: auto;
+  background-color: #ffffff;
+  border: 1px solid #e9ecef;
   border-radius: 4px;
 `;
 
-const InnerBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  min-width: 100%;
+const TableHeader = styled.div`
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
 `;
 
-const TableRow = styled.div<{ $isHeader?: boolean }>`
+const HeaderRow = styled.div`
   display: flex;
-  min-height: 48px;
-  width: 100%;
-  background-color: ${props => props.$isHeader ? '#f9f9f9' : '#ffffff'};
-  border-bottom: 1px solid #ececec;
+  width: max-content;
+`;
+
+const HeaderCell = styled.div`
+  display: flex;
+  padding: 12px 8px;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  color: #495057;
+  border-right: 1px solid #e9ecef;
   
-  &:hover {
-    background-color: ${props => props.$isHeader ? '#f9f9f9' : 'rgba(236, 236, 236, 0.2)'};
+  &:last-child {
+    border-right: none;
   }
 `;
 
-const TableColumn = styled.div<{ $width: string }>`
-  flex: ${props => props.$width ? 'none' : '1'};
-  width: ${props => props.$width || 'auto'};
-  min-width: ${props => props.$width || 'auto'};
-  display: flex;
-  align-items: stretch;
+const HeaderText = styled.div`
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-size: 14px;
 `;
 
-const CheckboxWrapper = styled.div`
+const SortIcon = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex: 1;
+`;
+
+const TableBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+`;
+
+const TableRow = styled.div`
+  display: flex;
+  width: max-content;
+  border-bottom: 1px solid #e9ecef;
+  
+  &:hover {
+    background-color: #f8f9fa;
+  }
+  
+  &:last-child {
+    border-bottom: none;
+  }
+`;
+
+const TableCell = styled.div`
+  display: flex;
+  padding: 12px 8px;
+  align-items: center;
+  border-right: 1px solid #e9ecef;
+  
+  &:last-child {
+    border-right: none;
+  }
+`;
+
+const CellText = styled.div`
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #495057;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const Checkbox = styled.input`
   width: 16px;
   height: 16px;
   cursor: pointer;
-`;
-
-const CellWrapper = styled.div`
-  display: flex;
-  flex: 1;
-  padding: 8px;
-`;
-
-const CellContent = styled.div`
-  display: flex;
-  align-items: center;
-  flex: 1;
-`;
-
-const CellInnerBox = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex: 1;
-`;
-
-const CellLeft = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const CellRight = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const CellText = styled.div`
-  font-family: 'Roboto', Helvetica;
-  font-weight: 400;
-  font-size: 14px;
-  color: #4b5763;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
-const StatusBadge = styled.div<{ $status: string }>`
-  display: flex;
-  padding: 4px 8px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  font-family: 'Roboto', Helvetica;
-  font-weight: 600;
-  font-size: 12px;
-  background-color: ${props => {
-    switch (props.$status) {
-      case 'Available': return 'rgba(50, 205, 50, 0.1)';
-      case 'In Transit': return 'rgba(0, 123, 255, 0.1)';
-      case 'Maintenance': return 'rgba(255, 165, 0, 0.1)';
-      case 'Reserved': return 'rgba(108, 117, 125, 0.1)';
-      default: return 'rgba(236, 236, 236, 0.5)';
-    }
-  }};
-  color: ${props => {
-    switch (props.$status) {
-      case 'Available': return '#32cd32';
-      case 'In Transit': return '#007bff';
-      case 'Maintenance': return '#ffa500';
-      case 'Reserved': return '#6c757d';
-      default: return '#4b5763';
-    }
-  }};
-`;
-
-const ActionButton = styled.button`
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  
-  &:hover {
-    background-color: #f9f9f9;
-  }
-`;
-
-const ActionIcon = styled.img`
-  width: 16px;
-  height: 16px;
 `;
 
 export default TableView; 

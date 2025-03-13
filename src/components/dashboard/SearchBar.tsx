@@ -25,6 +25,12 @@ function SearchBar({ placeholder, onSearch }: SearchBarProps) {
 
   return (
     <SearchContainer>
+      <SearchIconWrapper>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#9ea9b2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M21 21L16.65 16.65" stroke="#9ea9b2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </SearchIconWrapper>
       <SearchInput
         type="text"
         placeholder={placeholder}
@@ -32,7 +38,6 @@ function SearchBar({ placeholder, onSearch }: SearchBarProps) {
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
       />
-      <SearchIcon src="https://c.animaapp.com/tZAM44r5/img/frame.svg" alt="Search icon" />
     </SearchContainer>
   );
 }
@@ -53,10 +58,10 @@ const SearchContainer = styled.div`
   }
 `;
 
-const SearchIcon = styled.img`
-  width: 16px;
-  height: 16px;
-  opacity: 0.7;
+const SearchIconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const SearchInput = styled.input`
