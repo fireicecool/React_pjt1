@@ -1,0 +1,12 @@
+{
+  "apiUrl": "https://jsonplaceholder.typicode.com",
+  "endpoints": {
+    "todos": "/todos",
+    "users": "/users",
+    "posts": "/posts",
+    "comments": "/comments"
+  },
+  "defaultParams": {
+    "limit": 10
+  }
+} 
