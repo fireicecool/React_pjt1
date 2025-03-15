@@ -1,0 +1,151 @@
+:root {
+  --body-body-s-font-family: "Roboto", Helvetica;
+  --body-body-s-font-weight: 400;
+  --body-body-s-font-size: 14px;
+  --body-body-s-letter-spacing: 0px;
+  --body-body-s-line-height: normal;
+  --body-body-s-font-style: normal;
+  --subtitle-subtitle-XS-font-family: "Roboto", Helvetica;
+  --subtitle-subtitle-XS-font-weight: 600;
+  --subtitle-subtitle-XS-font-size: 12px;
+  --subtitle-subtitle-XS-letter-spacing: 0px;
+  --subtitle-subtitle-XS-line-height: normal;
+  --subtitle-subtitle-XS-font-style: normal;
+  --heading-heading-04-font-family: "Roboto", Helvetica;
+  --heading-heading-04-font-weight: 700;
+  --heading-heading-04-font-size: 24px;
+  --heading-heading-04-letter-spacing: 0px;
+  --heading-heading-04-line-height: normal;
+  --heading-heading-04-font-style: normal;
+  --subtitle-subtitle-m-font-family: "Roboto", Helvetica;
+  --subtitle-subtitle-m-font-weight: 600;
+  --subtitle-subtitle-m-font-size: 16px;
+  --subtitle-subtitle-m-letter-spacing: 0px;
+  --subtitle-subtitle-m-line-height: normal;
+  --subtitle-subtitle-m-font-style: normal;
+  --body-body-XS-font-family: "Roboto", Helvetica;
+  --body-body-XS-font-weight: 400;
+  --body-body-XS-font-size: 12px;
+  --body-body-XS-letter-spacing: 0px;
+  --body-body-XS-line-height: normal;
+  --body-body-XS-font-style: normal;
+  --cell-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.1);
+  --LNB-dropshadow: 0px 2px 14px 0px rgba(36, 56, 68, 0.1);
+  --color-main-gray-600: rgba(75, 87, 99, 1);
+  --color-button-fill-filled-text: rgba(255, 255, 255, 1);
+  --color-button-fill-outline-text: rgba(36, 56, 68, 1);
+  --color-main-gray-400: rgba(187, 192, 190, 1);
+  --color-text-fill-text-000: rgba(0, 0, 0, 1);
+  --color-button-stroke-outline-default: rgba(36, 56, 68, 1);
+  --color-main-gray-500: rgba(137, 146, 150, 1);
+  --color-main-gray-100: rgba(236, 236, 236, 1);
+  --color-button-fill-filled-default: rgba(36, 56, 68, 1);
+  --color-main-primary-700: rgba(36, 56, 68, 1);
+  --color-button-fill-outline-default: rgba(255, 255, 255, 0);
+  --color-background-BG-fff: rgba(255, 255, 255, 1);
+  --color-button-fill-outline-hovered: rgba(249, 249, 249, 1);
+  --color-main-gray-50: rgba(249, 249, 249, 1);
+  --system-colors-miscellaneous-text-field-BG: rgba(255, 255, 255, 1);
+  --spacing-spacing-spacing-02: 12px;
+  --spacing-spacing-spacing-01: 8px;
+  --spacing-padding-padding-00: 4px;
+  --spacing-padding-padding-01: 8px;
+  --spacing-spacing-spacing-00: 4px;
+  --spacing-spacing-spacing-03: 16px;
+  --spacing-padding-padding-02: 16px;
+  --spacing-padding-padding-03: 24px;
+  --spacing-spacing-spacing-04: 24px;
+  --spacing-padding-padding-04: 32px;
+}
+
+/*
+
+To enable a theme in your HTML, simply add one of the following data attributes to an HTML element, like so:
+
+<body data-color-mode="light-mode">
+    <!-- the rest of your content -->
+</body>
+
+You can apply the theme on any DOM node, not just the `body`
+
+*/
+
+[data-color-mode="light-mode"] {
+  --color-main-gray-600: rgba(75, 87, 99, 1);
+  --color-button-fill-outline-text: rgba(36, 56, 68, 1);
+  --color-main-gray-400: rgba(187, 192, 190, 1);
+  --color-text-fill-text-000: rgba(0, 0, 0, 1);
+  --color-button-stroke-outline-default: rgba(36, 56, 68, 1);
+  --color-main-gray-500: rgba(137, 146, 150, 1);
+  --color-main-gray-100: rgba(236, 236, 236, 1);
+  --color-button-fill-filled-default: rgba(36, 56, 68, 1);
+  --color-main-primary-700: rgba(36, 56, 68, 1);
+  --color-button-fill-outline-default: rgba(255, 255, 255, 0);
+  --color-button-fill-outline-hovered: rgba(249, 249, 249, 1);
+  --color-main-gray-50: rgba(249, 249, 249, 1);
+}
+
+[data-color-mode="dark-mode"] {
+  --color-main-gray-600: rgba(255, 255, 255, 1);
+  --color-button-fill-outline-text: rgba(255, 255, 255, 1);
+  --color-main-gray-400: rgba(255, 255, 255, 1);
+  --color-text-fill-text-000: rgba(255, 255, 255, 1);
+  --color-button-stroke-outline-default: rgba(255, 255, 255, 1);
+  --color-main-gray-500: rgba(255, 255, 255, 1);
+  --color-main-gray-100: rgba(255, 255, 255, 1);
+  --color-button-fill-filled-default: rgba(255, 255, 255, 1);
+  --color-main-primary-700: rgba(255, 255, 255, 1);
+  --color-button-fill-outline-default: rgba(255, 255, 255, 1);
+  --color-button-fill-outline-hovered: rgba(255, 255, 255, 1);
+  --color-main-gray-50: rgba(255, 255, 255, 1);
+}
+
+[data-system-colors-mode="light"] {
+  --system-colors-miscellaneous-text-field-BG: rgba(255, 255, 255, 1);
+}
+
+[data-system-colors-mode="dark"] {
+  --system-colors-miscellaneous-text-field-BG: rgba(0, 0, 0, 1);
+}
+
+[data-system-colors-mode="dark-elevated"] {
+  --system-colors-miscellaneous-text-field-BG: rgba(0, 0, 0, 1);
+}
+
+[data-system-colors-mode="IC-light"] {
+  --system-colors-miscellaneous-text-field-BG: rgba(255, 255, 255, 1);
+}
+
+[data-system-colors-mode="IC-dark"] {
+  --system-colors-miscellaneous-text-field-BG: rgba(0, 0, 0, 1);
+}
+
+[data-system-colors-mode="IC-dark-elevated"] {
+  --system-colors-miscellaneous-text-field-BG: rgba(0, 0, 0, 1);
+}
+
+[data-spacing-mode="desktop-m"] {
+  --spacing-spacing-spacing-02: 12px;
+  --spacing-spacing-spacing-01: 8px;
+  --spacing-padding-padding-00: 4px;
+  --spacing-padding-padding-01: 8px;
+  --spacing-spacing-spacing-00: 4px;
+  --spacing-spacing-spacing-03: 16px;
+  --spacing-padding-padding-02: 16px;
+  --spacing-padding-padding-03: 24px;
+  --spacing-spacing-spacing-04: 24px;
+  --spacing-padding-padding-04: 32px;
+}
+
+[data-spacing-mode="mobile-m"] {
+  --spacing-spacing-spacing-02: 4px;
+  --spacing-spacing-spacing-01: 4px;
+  --spacing-padding-padding-00: 2px;
+  --spacing-padding-padding-01: 4px;
+  --spacing-spacing-spacing-00: 2px;
+  --spacing-spacing-spacing-03: 8px;
+  --spacing-padding-padding-02: 8px;
+  --spacing-padding-padding-03: 12px;
+  --spacing-spacing-spacing-04: 12px;
+  --spacing-padding-padding-04: 16px;
+}

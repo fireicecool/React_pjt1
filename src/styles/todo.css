@@ -1,0 +1,61 @@
+/* 할 일 목록 스타일 */
+.todo-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.todo-title {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 24px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+}
+
+.todo-item.completed {
+  background-color: #f0f8ff;
+}
+
+.todo-title-text {
+  color: #333;
+}
+
+.todo-title-text.completed {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.button-group {
+  display: flex;
+  gap: 8px;
+}
+
+.todo-form {
+  display: flex;
+  margin-bottom: 24px;
+  gap: 8px;
+}
+
+.todo-input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.section-title {
+  font-size: 20px;
+  color: #444;
+  margin: 24px 0 16px;
+} 
